@@ -6,7 +6,11 @@ import { ScrollView } from "react-native";
 import { images } from "../constants/index.js";
 import CustomButton from "../components/CustomButton.jsx";
 import { Redirect, router } from "expo-router";
+import { useGlobalContext } from "../context/GlobalProvider.js";
 export default function App() {
+  const { isLoading, isLoggedIn } = useGlobalContext();
+
+  if (!isLoading && isLoggedIn) return <Redirect href="/home" />;
   return (
     <SafeAreaView style={styles.container}>
       <ScrollView>
